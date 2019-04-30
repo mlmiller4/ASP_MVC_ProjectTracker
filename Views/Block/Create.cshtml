@@ -1,0 +1,226 @@
+﻿@model ProjectTracker.Models.Block_Track
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+@section head {
+    <link href="~/Content/datepicker3.css" rel="stylesheet" />
+}
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Block_Track</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.OBJECTID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OBJECTID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OBJECTID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@     
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreetCalcs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.StreetCalcs)
+                        @Html.ValidationMessageFor(model => model.StreetCalcs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConcreteCalcs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.ConcreteCalcs)
+                        @Html.ValidationMessageFor(model => model.ConcreteCalcs, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Geometry, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Geometry)
+                        @Html.ValidationMessageFor(model => model.Geometry, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MXD_Export, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.MXD_Export)
+                        @Html.ValidationMessageFor(model => model.MXD_Export, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photoline_MXD_Export, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Photoline_MXD_Export)
+                        @Html.ValidationMessageFor(model => model.Photoline_MXD_Export, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CIC_Summary_Sheet_Export, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.CIC_Summary_Sheet_Export)
+                        @Html.ValidationMessageFor(model => model.CIC_Summary_Sheet_Export, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Streets_Sketchline_Edits, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Streets_Sketchline_Edits)
+                        @Html.ValidationMessageFor(model => model.Streets_Sketchline_Edits, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Concrete_Edits, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Concrete_Edits)
+                        @Html.ValidationMessageFor(model => model.Concrete_Edits, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MXD_PDF, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.MXD_PDF)
+                        @Html.ValidationMessageFor(model => model.MXD_PDF, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photoline_PDF, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Photoline_PDF)
+                        @Html.ValidationMessageFor(model => model.Photoline_PDF, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Photolog_PDF, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Photolog_PDF)
+                        @Html.ValidationMessageFor(model => model.Photolog_PDF, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FTP_Upload, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.FTP_Upload)
+                        @Html.ValidationMessageFor(model => model.FTP_Upload, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Submitted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Submitted, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBoxFor(model => model.Submitted, "{0:MM/dd/yyyy}", new { @class = "form-control", data_provide = "datepicker", data_date_format = "mm/dd/yyyy", data_date_today_highlight = "true", data_autoclose = "true" })
+                @Html.ValidationMessageFor(model => model.Submitted, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Completed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Completed, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBoxFor(model => model.Completed, "{0:MM/dd/yyyy}", new { @class = "form-control", data_provide = "datepicker", data_date_format = "mm/dd/yyyy", data_date_today_highlight = "true", data_autoclose = "true" })
+                @Html.ValidationMessageFor(model => model.Completed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PageNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PageNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PageNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+}

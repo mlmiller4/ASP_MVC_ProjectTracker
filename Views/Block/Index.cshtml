@@ -1,0 +1,351 @@
+﻿@model IEnumerable<ProjectTracker.Models.BlockLinkedView1>
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "CDOT - Project Tracking";
+    
+    if (ViewBag.searchType != null)
+    { <script type="text/javascript">var searchOption = '@ViewBag.searchType';var searchString = '@ViewBag.searchString';</script> }
+
+    if (ViewBag.currentSort != null)
+    {
+        <script type="text/javascript">
+            var currentSort = '@ViewBag.currentSort';
+        </script>
+    }
+
+    if (ViewBag.filter != null)
+    {
+        <script type="text/javascript">
+            var filter = '@ViewBag.filter';
+        </script>
+    }
+}
+
+
+
+@* ReWork for ActionMenu *@
+<div class="navbar navbar-default" style="margin: 0 0 10px 0!important; width: 1500px; height: 50px">
+    <div class="container-fluid">
+        <div class="navbar-header"><h2 style="padding-left: 0px">@ViewBag.Title</h2></div>
+         @*Create New Button*@
+        <div style="padding-left:1175px">
+            <div style="height:20px"></div>
+            @Html.ActionLink("Add New Block", "Create", new { @id = "create" }, new { @class = "btn btn-primary" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right action-menu">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@* Include into ActionMenu *@
+<hr style="width:1325px" />
+<div class="row" style="width:1325px">
+    <div>
+        @using (Html.BeginForm("Index", "Block", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <div class=" col-lg-5 col-md-6 pull-left">
+                <div class="form-group col-lg-5 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Filter by</span>
+                        @Html.DropDownList("f", @ViewBag.filterTypes as SelectList, new { @id = "f", @class = "form-control" })
+                    </div>
+                </div>
+                <span>
+                    <button type="submit" class="btn btn-success">Go!</button>
+                </span>
+            </div>
+            <div class=" col-lg-5 col-md-6 pull-right">
+                <div class="form-group col-lg-6 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Search by</span>
+                        @Html.DropDownList("type", @ViewBag.searchTypes as SelectList, new { @id = "searchType", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group col-lg-6 col-md-6">
+                    <div class="input-group">
+                        <input id="prjSearchText" name="q" type="text" class="form-control search-query" value="@((ViewBag.searchString != "null") ? ViewBag.searchString : "")">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success">Go!</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br>
+
+
+<div class="table-content">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr style="max-height: 25px !important; height: 25px !important; overflow:auto">
+                @*<th>
+                        @Html.DisplayNameFor(model => model.OBJECTID)
+                    </th>*@
+                <th>
+                    @*@Html.DisplayNameFor(model => model.PageNo)*@
+                    <div style="width:100px">
+                    @Html.ActionLink("PageNo", "Index", new { page = @ViewBag.currentPage, pageSize = @ViewBag.pageSize, q = @ViewBag.searchString, type = @ViewBag.searchType, sort = ViewBag.idSort, f = @ViewBag.filter }, new { title = "Page Number" })
+                    </div>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StreetCalcs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConcreteCalcs)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Geometry)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MXD_Export)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photoline_MXD_Export)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CIC_Summary_Sheet_Export)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Streets_Sketchline_Edits)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Concrete_Edits)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MXD_PDF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photoline_PDF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photolog_PDF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FTP_Upload)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Submitted)*@
+                    @Html.ActionLink("Submitted", "Index", new { page = @ViewBag.currentPage, pageSize = @ViewBag.pageSize, q = @ViewBag.searchString, type = @ViewBag.searchType, sort = ViewBag.SubmittedSort, f = @ViewBag.filter }, new { title = "Date Submitted" })
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Completed)*@
+                    @Html.ActionLink("Completed", "Index", new { page = @ViewBag.currentPage, pageSize = @ViewBag.pageSize, q = @ViewBag.searchString, type = @ViewBag.searchType, sort = ViewBag.CompletedSort, f = @ViewBag.filter }, new { title = "Date Completed" })
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr style="max-height: 25px !important; height: 25px !important; overflow:auto">
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.OBJECTID)
+                        </td>*@
+                    <td>
+                        <div class="largeContent">
+                            @Html.DisplayFor(modelItem => item.PageNo)
+                        </div>
+                    </td>
+                    <td>
+                        @if (item.StreetCalcs == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.ConcreteCalcs)*@
+                        @if (item.ConcreteCalcs == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Geometry)*@
+                        @if (item.Geometry == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.MXD_Export)*@
+                        @if (item.MXD_Export == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Photoline_MXD_Export)*@
+                        @if (item.Photoline_MXD_Export == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.CIC_Summary_Sheet_Export)*@
+                        @if (item.CIC_Summary_Sheet_Export == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Streets_Sketchline_Edits)*@
+                        @if (item.Streets_Sketchline_Edits == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Concrete_Edits)*@
+                        @if (item.Concrete_Edits == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.MXD_PDF)*@
+                        @if (item.MXD_PDF == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Photoline_PDF)*@
+                        @if (item.Photoline_PDF == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Photolog_PDF)*@
+                        @if (item.Photolog_PDF == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.FTP_Upload)*@
+                        @if (item.FTP_Upload == true)
+                        {
+                            <span>True</span>
+                        }
+                        else
+                        {
+                            <span>False</span>
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Submitted)*@
+                        @if (item.Submitted != null)
+                        {
+                            @item.Submitted.Value.ToString("d")
+                        }
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Completed)*@
+                        @if (item.Completed != null)
+                        {
+                            @item.Completed.Value.ToString("d")
+                        }
+                    </td>
+                    <td>
+                        <div class="btn-toolbar" style="width: 155px !important; text-align:justify">                        
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PageNo }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Details", "Details", new { id = item.PageNo }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PageNo }, new { @class = "btn btn-primary btn-xs" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pull-left">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, pageSize = @ViewBag.pageSize, q = @ViewBag.searchString, type = @ViewBag.searchType, sort = @ViewBag.CurrentSort, f = @ViewBag.filter }), new PagedListRenderOptions { DisplayPageCountAndCurrentLocation = true, UlElementClasses = new[] { "pagination" }, ContainerDivClasses = new[] { "pagination-container" } })
+    </div>
+    <ul class="pager-sizer pagination pull-right">
+        <li class="disabled"><span>Show</span> </li>
+        @Html.PageSizer("5", "Index", (int)ViewBag.pageSize, (int)ViewBag.currentPage, "show 5 items per page", (string)@ViewBag.searchString, (string)@ViewBag.searchType, (string)@ViewBag.currentSort, (string)@ViewBag.filter)
+        @Html.PageSizer("10", "Index", (int)ViewBag.pageSize, (int)ViewBag.currentPage, "show 10 items per page", (string)@ViewBag.searchString, (string)@ViewBag.searchType, (string)@ViewBag.currentSort, (string)@ViewBag.filter)
+        @Html.PageSizer("20", "Index", (int)ViewBag.pageSize, (int)ViewBag.currentPage, "show 20 items per page", (string)@ViewBag.searchString, (string)@ViewBag.searchType, (string)@ViewBag.currentSort, (string)@ViewBag.filter)
+        <li class="disabled"><span>per page</span></li>
+    </ul>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            sessionStorage.removeItem('searchType');
+            sessionStorage.removeItem('searchString');
+            sessionStorage.removeItem('sort');
+            sessionStorage.removeItem('filter');
+            if(typeof searchOption != 'undefined'){
+                sessionStorage.setItem('searchType', searchOption);
+                sessionStorage.setItem('searchString', searchString);
+            };
+
+            if (typeof currentSort != 'undefined') {
+                sessionStorage.setItem('sort', currentSort);
+            }
+            if (typeof filter != 'undefined') {
+                sessionStorage.setItem('filter', filter);
+            }
+
+            sessionStorage.setItem('pageSize', @ViewBag.pageSize);
+            sessionStorage.setItem('page', @ViewBag.currentPage);
+        });
+    </script>
+}

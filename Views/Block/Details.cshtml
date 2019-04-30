@@ -1,0 +1,154 @@
+﻿@model ProjectTracker.Models.Block_Track
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Block: @Html.DisplayFor(model => model.PageNo)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.OBJECTID)
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.OBJECTID)
+        </dd>*@
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetCalcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetCalcs)
+            @*@if (models.StreetCalcs == true)
+            {
+                <span>True</span>
+            }
+            else
+            {
+                <span>False</span>
+            }*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcreteCalcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcreteCalcs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Geometry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Geometry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MXD_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MXD_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photoline_MXD_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photoline_MXD_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIC_Summary_Sheet_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIC_Summary_Sheet_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Streets_Sketchline_Edits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Streets_Sketchline_Edits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Concrete_Edits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concrete_Edits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MXD_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MXD_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photoline_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photoline_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photolog_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photolog_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FTP_Upload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FTP_Upload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Submitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Submitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Completed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PageNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

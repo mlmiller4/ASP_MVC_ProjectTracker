@@ -1,0 +1,192 @@
+﻿@model ProjectTracker.Models.Block_Track
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Block_Track</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OBJECTID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OBJECTID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Block_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Block_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIS_Processor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIS_Processor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Processed_By_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Processed_By_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reviewer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reviewer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review_By_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Review_By_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetCalcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetCalcs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConcreteCalcs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConcreteCalcs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Geometry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Geometry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MXD_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MXD_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photoline_MXD_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photoline_MXD_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIC_Summary_Sheet_Export)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIC_Summary_Sheet_Export)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Streets_Sketchline_Edits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Streets_Sketchline_Edits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Concrete_Edits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concrete_Edits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MXD_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MXD_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photoline_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photoline_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photolog_PDF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photolog_PDF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FTP_Upload)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FTP_Upload)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Submitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Submitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Completed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completed)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
